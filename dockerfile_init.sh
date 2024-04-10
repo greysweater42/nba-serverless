@@ -26,3 +26,5 @@ aws iam attach-role-policy --role-name nba --policy-arn arn:aws:iam::aws:policy/
 
 # reuired to write files to s3 bucket
 aws iam attach-role-policy --role-name nba --policy-arn arn:aws:iam::aws:policy/AmazonS3FullAccess
+
+serverless deploy
