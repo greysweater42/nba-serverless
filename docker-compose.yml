@@ -1,0 +1,12 @@
+version: '3'
+services:
+
+  app:
+    build: .
+    image: lambda:latest
+    command: tail -f /dev/null
+    # environment:
+    #   - SOME_ENV_VARIABLE=test
+    volumes:
+      - ~/.aws:/root/.aws
+      - .:/app
