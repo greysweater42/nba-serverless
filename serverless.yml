@@ -1,0 +1,26 @@
+service: nba
+
+provider:
+  name: aws
+  runtime: python3.11
+  lambdaHashingVersion: 20201221
+  region: eu-central-1
+  timeout: 10 # You set a timeout of 10 seconds for the functions
+  role: arn:aws:iam::${aws:accountId}:role/serverlessLabs
+  memorySize: 512
+
+package:
+  exclude:
+    - node_modules/**
+    - venv/**
+
+functions:
+  first_function:
+    handler: handler.first_function
+    events:
+    - http:
+        path: first
+        method: get    
+
+plugins:
+  - serverless-python-requirements
