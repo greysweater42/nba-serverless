@@ -4,9 +4,10 @@ services:
   app:
     build: .
     image: lambda:latest
-    command: tail -f /dev/null
+    # init is run here, not in dockerfile, because it requires volume with aws 
+    # credentials
+    command: bash /app/dockerfile_init.sh
     # environment:
     #   - SOME_ENV_VARIABLE=test
     volumes:
       - ~/.aws:/root/.aws
-      - .:/app

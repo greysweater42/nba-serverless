@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 
-if [ ! -d /app/venv ]; then
-    python3 -m venv venv
-fi
-
-/app/venv/bin/pip install -r requirements.txt
-
+# ---
+# - creates a role in AWS which has the right to execute lambda functions and save
+# the results of the execution to s3
+# - deploys the function to AWS Lambda
+# ---
 
 aws iam create-role --role-name nba --assume-role-policy-document '{
   "Version": "2012-10-17",

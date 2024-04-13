@@ -2,6 +2,7 @@ from pathlib import Path
 import boto3
 from nba_api.live.nba.endpoints import scoreboard
 
+
 # TODO bucket name as an environment variable
 # TODO date should be the name of the file. then snowpipe should insert the file name into the "date" column
 # TODO docstrings

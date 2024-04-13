@@ -1,4 +1,4 @@
-from node:lts
+FROM node:lts
 
 RUN apt-get update
 
@@ -11,6 +11,12 @@ RUN apt install python3-venv -y
 RUN apt install vim -y
 
 WORKDIR /app
-COPY dockerfile_init.sh serverless.yml requirements.txt /app/
+
+# install serverless plugin which enables adding python packages to lambda
+COPY serverless.yml /app/
 RUN sls plugin install -n serverless-python-requirements --config /app/serverless.yml
-RUN bash /app/dockerfile_init.sh
+
+RUN python3 -m venv venv
+COPY requirements.txt /app/
+RUN /app/venv/bin/pip install -r requirements.txt
+COPY handler.py serverless.yml app/
