@@ -6,7 +6,7 @@ provider:
   lambdaHashingVersion: 20201221
   region: eu-central-1
   timeout: 10 # You set a timeout of 10 seconds for the functions
-  role: arn:aws:iam::${aws:accountId}:role/serverlessLabs
+  role: arn:aws:iam::${aws:accountId}:role/nba
   memorySize: 512
 
 package:
@@ -16,8 +16,9 @@ package:
 
 functions:
   first_function:
-    handler: handler.first_function
+    handler: handler.save_nba_game_scores
     events:
+    # creates api gateway endpoint, so you can trigger the function using curl
     - http:
         path: first
         method: get    
